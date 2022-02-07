@@ -4,8 +4,7 @@
   }
 
 .list-group {
-  margin-right: 2%;
-  margin-left: 2%;
+  margin: 2% 15%;
 }
 
 .form-group {
@@ -40,25 +39,56 @@
 }
 
 #home {
-  margin-bottom: 1%;
+  margin-bottom: 10px;
   border-radius: 5px;
 }
 
-h1 {
+h1, h2 {
   text-align: center;
 }
 
-#postID {
-  margin: 2% 2%;
+#box {
+  margin: 2% 15%;
   padding: 2% 2%;
   background-color: rgb(255, 255, 255);
   border-radius: 5px;
 }
 
 #about {
-  margin-right: 2%;
-  margin-left: 2%;
+  margin: 0% 15%;
   padding: 2% 2%;
   background-color: rgb(255, 255, 255);
   border-radius: 5px;
 }
+
+#viewsNumber {
+  text-align: right;
+}
+
+#likesAndComments {
+  margin: 0, 0, 10px;
+  float: left;
+  text-align: left;
+}
+
+.box {
+  text-align: left;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  margin: 2% 15%;
+  width: 50;
+  padding: 2% 2% 3px;
+}
+
+.like-toggle{
+  background-color: rgb(255, 255, 255);
+  color: rgb(144, 144, 144);
+  outline:none;
+  box-shadow:none;
+  border: none;
+  width: 22px;
+  height: 30px;
+  font-size: 1.2em;
+  border-radius: 100px;
+}
+

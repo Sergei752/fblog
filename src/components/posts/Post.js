@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { IoPersonOutline, IoChatboxOutline, IoEyeOutline, IoHeartOutline } from "react-icons/io5";
 
 const Post = () => {
   const [data, setPost] = useState({
@@ -22,28 +23,34 @@ const Post = () => {
   };
 
   return (
+      
+      <div className="box">
 
-    <div>
-      <div id="postID">
-        <h1>{data.title}</h1>
-        <p className="lead">{data.fullText}</p>
+        <ul class="list-inline">
+          <IoPersonOutline size={40} />
+          <li class="list-inline-item"><p>NickName</p></li>
+          <li class="list-inline-item"><p><small>02.02.2022 в 22:22</small></p></li>
+        </ul>
+
+        <h2>{data.title}</h2>
+        <p>{data.fullText}</p>
+
+        <ul class="list-inline">
+
+          <div id="likesAndComments">
+            <IoHeartOutline size={25}/>
+            <li class="list-inline-item">5</li>
+            <IoChatboxOutline size={25} />
+            <li class="list-inline-item">3</li>
+          </div>
+          
+          <div id="viewsNumber">
+            <IoEyeOutline size={25} />
+            <li class="list-inline-item">69</li>
+          </div>
+
+        </ul>
       </div>
-    </div>
-
-
-    // <div className="container py-4">
-    //   {/* <Link className="btn btn-primary" 
-    //     to="/">
-    //     back to Home
-    //   </Link> */}
-    //   <h1 className="display-4">Post Id: {stateId}</h1>
-    //   <hr />
-    //   <ul className="list-group w-50">
-    //     <li className="list-group-item">title: {data.title}</li>
-    //     <li className="list-group-item">anons: {data.anons}</li>
-    //     <li className="list-group-item">text: {data.fullText}</li>
-    //   </ul>
-    // </div>
   );
 };
 

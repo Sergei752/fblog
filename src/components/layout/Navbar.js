@@ -36,6 +36,14 @@ const Navbar = () => {
           </ul>
         </div>
 
+        <form class="navbar-form navbar-right" role="search">
+          <div class="form-group">
+            <input type="text" 
+                   class="form-control" 
+                   placeholder="Найти" />
+          </div>
+        </form>
+
         <Link className="btn btn-outline-light" to="/posts/add">Add Post</Link>
       </div>
     </nav>

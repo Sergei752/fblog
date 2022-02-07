@@ -16,13 +16,13 @@ import EditPost from './components/posts/EditPost';
 import Post from './components/posts/Post';
 import Login from './components/users/login';
 import SignUp from './components/users/signup';
+import Search from './components/pages/Search';
 
 function App() {
   return ( 
     <Router>
       <div className='App'>
         <Navbar />
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/about' element={<About />} />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { IoPersonOutline, IoChatboxOutline, IoEyeOutline, IoHeartOutline } from "react-icons/io5";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -19,110 +20,74 @@ const Home = () => {
     loadPosts();
   };
 
-
-//было
-// const Home = () => {
-//   const url = 'http://localhost:8080/states'
-//   const [data, setData] = useState([])
-
-//   useEffect(() => {
-//     axios.get(url)
-//     .then(res => setData(res.data))
-//   }, [])
-
-
-
-  // const loadPosts = async () => {
-  //   const res = await axios.get('http://localhost:8080/states');
-  //   setData(res.data.reverse());
-  // };
-
-  // const deletePost = async stateId => {
-  //   await axios.delete(`http://localhost:8080/states/${stateId}`);
-  //   loadPosts();
-  // };
-
   return (
-<div class="list-group">
-<h1>All Posts</h1>
-  {data.map((post) => (
-  <div id="home" class="list-group-item list-group-item-action">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{post.title}</h5>
-      <small class="text-muted">
+    <div class="list-group">
+    {/* <h1>All Posts</h1> */}
+    {/* <div className="form-group">
+        <input type="text" 
+                className="form-control" 
+                placeholder="Найти" 
+                onChange={event => setSearch(event.target.value)} 
+        />
+    </div> */}
 
-      <Link 
-        className="btn btn-primary" 
-        to={`/posts/${post.stateId}`}>
-        View
-      </Link>
+      {data.map((post) => (
+      <div id="home" class="list-group-item list-group-item-action">
 
-      <Link
-        className="btn btn-outline-primary mr-2"
-        to={`/posts/edit/${post.stateId}`}>
-        Edit
-      </Link>
+        <ul class="list-inline">
+            <IoPersonOutline size={40} />
+            <li class="list-inline-item"><p>NickName</p></li>
+            <li class="list-inline-item"><p><small>02.02.2022 в 22:22</small></p></li>
+        </ul>
 
-      <Link
-        className="btn btn-danger"
-        onClick={() => deletePost(post.stateId)}
-        to="/">
-        Delete
-      </Link>
+        <div class="d-flex w-100 justify-content-between">
+          <h2>{post.title}</h2>
+          <small class="text-muted">
 
-      </small>
+          <Link 
+            className="btn btn-primary" 
+            to={`/posts/${post.stateId}`}>
+            View
+          </Link>
+
+          <Link
+            className="btn btn-outline-primary mr-2"
+            to={`/posts/edit/${post.stateId}`}>
+            Edit
+          </Link>
+
+          <Link
+            className="btn btn-danger"
+            onClick={() => deletePost(post.stateId)}
+            to="/">
+            Delete
+          </Link>
+
+          </small>
+        </div>
+
+        <p>{post.anons}</p>
+
+        <ul class="list-inline">
+
+          <div id="likesAndComments">
+            <IoHeartOutline size={25}/>
+            <li class="list-inline-item">5</li>
+            <IoChatboxOutline size={25} />
+            <li class="list-inline-item">3</li>
+          </div>
+          
+          <div id="viewsNumber">
+            <IoEyeOutline size={25} />
+            <li class="list-inline-item">69</li>
+          </div>
+
+        </ul>
+        {/* <small class="mb-1" class="text-muted">{post.fullText}</small> */}
+
+      </div>
+      ))}
     </div>
-
-    <p class="mb-1">{post.anons}</p>
-    {/* <small class="text-muted">{post.fullText}</small> */}
-
-  </div>
-  ))}
- </div>
-
-
-    // <div className="container">
-    //   <div className="py-4">
-    //     <h1>All Posts</h1>
-    //     <table className="table border shadow">
-    //       <thead className="thead-dark">
-    //         <tr>
-    //           <th scope="col">Title</th>
-    //           <th scope="col">Anons</th>
-    //           <th scope="col">Text</th>
-    //           <th>Action</th>
-    //         </tr>
-    //       </thead>
-    //       <tbody>
-    //         {data.map((post) => (
-    //           <tr key={post.stateId}>
-    //             <td>{post.title}</td>
-    //             <td>{post.anons}</td>
-    //             <td>{post.fullText}</td>
-    //             <td>
-    //               <Link 
-    //                 className="btn btn-primary" 
-    //                 to={`/posts/${post.stateId}`}>
-    //                   View
-    //               </Link>
-    //               <Link
-    //                 className="btn btn-outline-primary mr-2"
-    //                 to={`/posts/edit/${post.stateId}`}>
-    //                   Edit
-    //               </Link>
-    //               <Link
-    //                 className="btn btn-danger"
-    //                 onClick={() => deletePost(post.stateId)}
-    //                 to="/">
-    //                   Delete
-    //               </Link>
-    //             </td>
-    //           </tr>
-    //         ))}
-    //       </tbody>
-    //     </table>
-    //   </div>
-    // </div>
   );
 };
 
