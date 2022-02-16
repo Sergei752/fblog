@@ -22,12 +22,12 @@ const EditPost = () => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    await axios.put(`http://localhost:8080/states/${stateId}`, post);
+    await axios.put(`http://localhost:8080/posts/${stateId}`, post);
     navigate("/");
   };
 
   const loadPost = async () => {
-    const result = await axios.get(`http://localhost:8080/states/${stateId}`);
+    const result = await axios.get(`http://localhost:8080/posts/${stateId}`);
     setPost(result.data);
   };
   return (

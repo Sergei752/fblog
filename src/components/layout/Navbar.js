@@ -25,7 +25,7 @@ const Navbar = () => {
               <NavLink className="nav-link" to="/">Home</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/sign-in">Login</NavLink>
+              <NavLink className="nav-link" to="/sign-in">Profile</NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/sign-up">Sign up</NavLink>
@@ -36,10 +36,10 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <form class="navbar-form navbar-right" role="search">
-          <div class="form-group">
+        <form className="navbar-form navbar-right" role="search">
+          <div className="form-group">
             <input type="text" 
-                   class="form-control" 
+                   className="form-control" 
                    placeholder="Найти" />
           </div>
         </form>

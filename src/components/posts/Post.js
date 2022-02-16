@@ -4,11 +4,11 @@ import axios from 'axios';
 import { IoPersonOutline, IoChatboxOutline, IoEyeOutline, IoHeartOutline } from "react-icons/io5";
 
 const Post = () => {
-  const [data, setPost] = useState({
-    stateId: null,
-    title: '',
-    anons: '',  
-    fullText: ''
+  const [post, setPost] = useState({
+    // articleId: null,
+    // title: '',
+    // anons: '',  
+    // fullText: ''
   });
 
   const { stateId } = useParams();
@@ -18,39 +18,42 @@ const Post = () => {
   }, []);
 
   const loadPost = async () => {
-    const res = await axios.get(`http://localhost:8080/states/${stateId}`);
+    const res = await axios.get(`http://localhost:8080/posts/${stateId}`);
     setPost(res.data);
   };
 
   return (
-      
-      <div className="box">
+      <div key={post.userId} className="box">
 
-        <ul class="list-inline">
+        {/* <div>{post.likes}</div> */}
+      
+        <ul className="list-inline">
           <IoPersonOutline size={40} />
-          <li class="list-inline-item"><p>NickName</p></li>
-          <li class="list-inline-item"><p><small>02.02.2022 в 22:22</small></p></li>
+          <li className="list-inline-item"><p>NickName</p></li>
+          <li className="list-inline-item"><p><small>02.02.2022 в 22:22</small></p></li>
         </ul>
 
-        <h2>{data.title}</h2>
-        <p>{data.fullText}</p>
+        <p>#front #back #pagination</p>
+        <h2>{post.title}</h2>
+        <p>{post.fullText}</p>
 
-        <ul class="list-inline">
-
+        <ul className="list-inline">
           <div id="likesAndComments">
             <IoHeartOutline size={25}/>
-            <li class="list-inline-item">5</li>
+            <li className="list-inline-item">{post.likes}</li>
             <IoChatboxOutline size={25} />
-            <li class="list-inline-item">3</li>
-          </div>
-          
-          <div id="viewsNumber">
+            <li className="list-inline-item">3</li>
             <IoEyeOutline size={25} />
-            <li class="list-inline-item">69</li>
+            <li className="list-inline-item">{post.views}</li>
           </div>
-
         </ul>
+
+        <div className="box">
+          <p>Если нажать на значок комментарии, вылезет это окно снизу поста с комментами</p>
+        </div>
+
       </div>
+      
   );
 };
 

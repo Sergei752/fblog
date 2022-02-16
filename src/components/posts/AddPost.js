@@ -17,7 +17,7 @@ const AddPost = () => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    await axios.post('http://localhost:8080/states', post);
+    await axios.post('http://localhost:8080/posts', post);
     navigate("/");
   };
   return (

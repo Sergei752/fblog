@@ -54,6 +54,13 @@ h1, h2 {
   border-radius: 5px;
 }
 
+#boxComments {
+  margin: 2% 10%;
+  padding: 2% 2%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+
 #about {
   margin: 0% 15%;
   padding: 2% 2%;

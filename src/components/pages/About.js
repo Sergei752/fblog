@@ -9,7 +9,7 @@ const About = () => {
         <p id="about" className="lead">Расскажем потом что-нибудь о себе)</p>
       </div>
     </div>
-    
+
   );
 };
 

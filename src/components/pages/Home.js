@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { IoPersonOutline, IoChatboxOutline, IoEyeOutline, IoHeartOutline } from "react-icons/io5";
+// import Pagination from 'react-bootstrap/Pagination';
+// import PageItem from 'react-bootstrap/PageItem';
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -11,17 +13,17 @@ const Home = () => {
   }, []);
 
   const loadPosts = async () => {
-    const result = await axios.get("http://localhost:8080/states");
-    setData(result.data.reverse());
+    const result = await axios.get("http://localhost:8080/posts");
+    setData(result.data.content);
   };
 
-  const deletePost = async stateId => {
-    await axios.delete(`http://localhost:8080/states/${stateId}`);
+  const deletePost = async articleId => {
+    await axios.delete(`http://localhost:8080/posts/${articleId}`);
     loadPosts();
   };
 
   return (
-    <div class="list-group">
+    <div className="list-group">
     {/* <h1>All Posts</h1> */}
     {/* <div className="form-group">
         <input type="text" 
@@ -32,33 +34,36 @@ const Home = () => {
     </div> */}
 
       {data.map((post) => (
-      <div id="home" class="list-group-item list-group-item-action">
+      <div id="home" key={post.articleId} className="list-group-item list-group-item-action">
 
-        <ul class="list-inline">
+        <ul className="list-inline">
             <IoPersonOutline size={40} />
-            <li class="list-inline-item"><p>NickName</p></li>
-            <li class="list-inline-item"><p><small>02.02.2022 в 22:22</small></p></li>
+            <li className="list-inline-item"><h4>{post.author.name}</h4></li>
+            <li className="list-inline-item"><h6><small>{post.author.created}</small></h6></li>
+            <li className="list-inline-item"><h5><small>{post.author.role}</small></h5></li>
+            <li className="list-inline-item"><h5><small>{post.author.status}</small></h5></li>
         </ul>
+        <p>#{post.tags[0].name}</p>
 
-        <div class="d-flex w-100 justify-content-between">
+        <div className="d-flex w-100 justify-content-between">
           <h2>{post.title}</h2>
-          <small class="text-muted">
+          <small className="text-muted">
 
           <Link 
             className="btn btn-primary" 
-            to={`/posts/${post.stateId}`}>
+            to={`/posts/${post.articleId}`}>
             View
           </Link>
 
           <Link
             className="btn btn-outline-primary mr-2"
-            to={`/posts/edit/${post.stateId}`}>
+            to={`/posts/edit/${post.articleId}`}>
             Edit
           </Link>
 
           <Link
             className="btn btn-danger"
-            onClick={() => deletePost(post.stateId)}
+            onClick={() => deletePost(post.articleId)}
             to="/">
             Delete
           </Link>
@@ -68,25 +73,42 @@ const Home = () => {
 
         <p>{post.anons}</p>
 
-        <ul class="list-inline">
+        <ul className="list-inline">
 
           <div id="likesAndComments">
             <IoHeartOutline size={25}/>
-            <li class="list-inline-item">5</li>
-            <IoChatboxOutline size={25} />
-            <li class="list-inline-item">3</li>
+            <li className="list-inline-item">{post.likes}</li>
+            <IoEyeOutline size={25} />
+            <li className="list-inline-item">{post.views}</li>
+            {/* <IoChatboxOutline size={25} />
+            <li className="list-inline-item">3</li> */}
           </div>
           
-          <div id="viewsNumber">
+          {/* <div id="viewsNumber">
             <IoEyeOutline size={25} />
-            <li class="list-inline-item">69</li>
-          </div>
+            <li className="list-inline-item">69</li>
+          </div> */}
 
         </ul>
-        {/* <small class="mb-1" class="text-muted">{post.fullText}</small> */}
-
+        {/* <small className="mb-1" className="text-muted">{post.fullText}</small> */}
+        
       </div>
       ))}
+
+      <nav aria-label="Page navigation example">
+        <ul className="pagination justify-content-center">
+          <li className="page-item disabled">
+            <a className="page-link" href="#" tabIndex="-1" aria-disabled="true">Previous</a>
+          </li>
+          <li className="page-item"><a className="page-link" href="#">1</a></li>
+          <li className="page-item"><a className="page-link" href="#">2</a></li>
+          <li className="page-item"><a className="page-link" href="#">3</a></li>
+          <li className="page-item">
+            <a className="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+
     </div>
   );
 };
